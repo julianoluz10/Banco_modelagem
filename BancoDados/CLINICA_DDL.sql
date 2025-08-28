@@ -41,7 +41,27 @@ CREATE TABLE clinica.consulta(
 	id_paciente INT NOT NULL REFERENCES clinica.paciente(id_paciente)
 );
 
+--ALTER - ALTERAR A TABELA
+--ALTER TABLE clinica.paciente
+
+--ADD COLUMN cpf VARCHAR(14);
+--UNIQUE - IMPEDE QUE SEJA CADASTRADO ALGO QUE JA EXISTE NO BANCO
+
+--renomear tabela
+--ALTER TABLE clinica.paciente;
+--RENAME TO clinica.novopaciente;
+--DROP COLUMN cpf;
+
+--TRUNCATE-LIMPA A TABELA
+--TRUNCATE TABLE clinica.consulta RESTART IDENTITY;
+
+
+--RESTART IDENTITY;
+--RESTART IDENTITY -REINICIA A SEQUENCIA;
+
 --Apagar Tabela - DROP
+
+
 /*
 DROP TABLE clinica.consulta;
 DROP TABLE clinica.clinica;
