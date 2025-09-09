@@ -21,5 +21,8 @@ public class ClienteService {
     public List<Cliente> listarTodos(){
         return clienteRepository.findAll();
     }
-
+    //INSERT INTO blabla
+    public Cliente CadastrarCliente(Cliente cl){
+        return clienteRepository.save(cl);
+    }
 }

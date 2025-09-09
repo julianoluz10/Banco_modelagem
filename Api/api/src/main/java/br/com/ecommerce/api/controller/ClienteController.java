@@ -2,10 +2,9 @@ package br.com.ecommerce.api.controller;
 
 import br.com.ecommerce.api.model.Cliente;
 import br.com.ecommerce.api.service.ClienteService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,18 @@ public class ClienteController {
 
         List<Cliente> clientes = clienteService.listarTodos();
         return ResponseEntity.ok(clientes);
+    }
+
+    @PostMapping
+    public ResponseEntity<Cliente> CadastrarCliente(
+           @RequestBody Cliente cliente
+    ){
+        //1. TENTAR CADASTRAR O CLIENTE
+        clienteService.CadastrarCliente(cliente);
+        //codigo 200-04
+        //return ResponseEntity.ok(cliente);
+        //codigo 201-create
+        return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
 }

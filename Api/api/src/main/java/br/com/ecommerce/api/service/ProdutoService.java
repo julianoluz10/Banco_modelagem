@@ -5,6 +5,7 @@ import br.com.ecommerce.api.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class ProdutoService {
     //Injecao de Dependencia
@@ -13,10 +14,17 @@ public class ProdutoService {
     private final ProdutoRepository produtoRepository;
 
     public ProdutoService(ProdutoRepository prod) {
+
         produtoRepository = prod;
     }
+
     //Listar todos os Produtos
-    public List<Produto> ListarTodos(){
+
+    public List<Produto> listarTodos() {
         return produtoRepository.findAll();
+    }
+    //Insert Into
+    public Produto CadastrarProduto(Produto produto){
+        return produtoRepository.save(produto);
     }
 }
