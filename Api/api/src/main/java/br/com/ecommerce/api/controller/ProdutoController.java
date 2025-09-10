@@ -3,11 +3,9 @@ package br.com.ecommerce.api.controller;
 import br.com.ecommerce.api.model.Produto;
 import br.com.ecommerce.api.service.ProdutoService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,9 +29,28 @@ public class ProdutoController {
     public ResponseEntity<Produto> CadastrarProduto(
             @RequestBody Produto produto
     ){
-        //.TENTAR CADASTRA O CLIENTE
+        //.TENTAR CADASTRA O Produto
         produtoService.CadastrarProduto(produto);
         //codigo-201-create
-return ResponseEntity.ok(produto);    }
+        return ResponseEntity.status(HttpStatus.CREATED).body(produto);
+    }
+    //Buscar cliente por ID
+    //GET,POST,PUT,DELETE
+    @GetMapping("/{id}")
+    //path variable-->recebe uma valor no link
+    //request body-->
+    public ResponseEntity<?>buscarProdutoPorId(@PathVariable Integer id){
+        //1.Procurar o Produto
+        Produto produto = produtoService.buscarPorId(id);
+        
+        //2.Se nao encontrar, retorno um erro
+        if(produto == null){
+            //MaisSimples:
+            //retun ResponseEntity.notFound().build()
+            //Mais detalhe
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Produto "+ id + "Nao encontrado")
+        }
+    }
 
 }
